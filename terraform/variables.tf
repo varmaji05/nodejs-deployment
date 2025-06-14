@@ -36,3 +36,29 @@ variable "project" {
   description = "Project name prefix"
   default     = "demo"
 }
+
+variable "ami_id" {
+  description = "The ID of the Amazon Machine Image (AMI) to use for EC2 instances"
+  type        = string
+}
+
+variable "instance_type" {
+  description = "The EC2 instance type to use for the application servers"
+  type        = string
+  default     = "t2.micro"
+}
+
+variable "key_name" {
+  description = "The name of the existing EC2 Key Pair to enable SSH access to the instances"
+  type        = string
+}
+
+variable "vpc_id" {
+  description = "The ID of the VPC where the infrastructure will be deployed"
+  type        = string
+}
+
+variable "public_subnet_ids" {
+  description = "List of public subnet IDs where the ALB and EC2 instances will be launched"
+  type        = list(string)
+}
