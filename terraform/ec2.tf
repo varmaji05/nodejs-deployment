@@ -3,6 +3,7 @@ resource "aws_launch_template" "app_lt" {
   image_id      = var.ami_id
   instance_type = var.instance_type
   key_name      = var.key_name
+  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
 
   network_interfaces {
     associate_public_ip_address = true
