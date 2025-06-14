@@ -31,3 +31,8 @@ variable "private_subnets" {
     "priv-2" = { cidr = "10.0.12.0/24", az = "us-east-1b" }
   }
 }
+
+variable "project" {
+  description = "Project name prefix"
+  default     = "demo"
+}
