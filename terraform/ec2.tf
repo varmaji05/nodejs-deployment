@@ -11,6 +11,9 @@ resource "aws_launch_template" "app_lt" {
   }
 
   user_data = base64encode(templatefile("${path.module}/user_data.sh", {
+    db_host       = aws_db_instance.app_db.address,
+    db_user       = var.db_username,
+    db_pass       = var.db_password,
     ecr_repo_url = aws_ecr_repository.app.repository_url
   }))
 
