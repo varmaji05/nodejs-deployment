@@ -13,3 +13,7 @@ output "private_subnet_ids" {
 output "ecr_repo_url" {
   value = aws_ecr_repository.app.repository_url
 }
+
+output "alb_dns_name" {
+  value = aws_lb.app_alb.dns_name
+}
