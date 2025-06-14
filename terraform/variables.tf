@@ -62,3 +62,13 @@ variable "public_subnet_ids" {
   description = "List of public subnet IDs where the ALB and EC2 instances will be launched"
   type        = list(string)
 }
+
+variable "private_subnet_ids" {
+  type = list(string)
+}
+
+variable "db_username" {}
+
+variable "db_password" {
+  sensitive = true
+}
