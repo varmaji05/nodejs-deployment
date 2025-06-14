@@ -72,3 +72,19 @@ variable "db_username" {}
 variable "db_password" {
   sensitive = true
 }
+
+variable "db_username" {
+  description = "Username for the RDS database"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Password for the RDS database"
+  type        = string
+  sensitive   = true
+}
+
+variable "alert_email" {
+  description = "Email address to receive CloudWatch alerts"
+  type        = string
+}
