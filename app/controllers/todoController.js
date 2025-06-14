@@ -1,15 +1,14 @@
-const todos = [
-  { id: 1, task: "Learn Docker", completed: false },
-  { id: 2, task: "Write Terraform", completed: false }
-];
+const todoService = require('../services/todoService');
 
-const getTodos = () => {
-  return todos;
+const getTodos = (req, res) => {
+  const todos = todoService.getTodos();
+  res.json(todos);
 };
 
-const addTodo = (todo) => {
-  todos.push(todo);
-  return todo;
+const createTodo = (req, res) => {
+  const newTodo = req.body;
+  const added = todoService.addTodo(newTodo);
+  res.status(201).json(added);
 };
 
-module.exports = { getTodos, addTodo };
+module.exports = { getTodos, createTodo };
