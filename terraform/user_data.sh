@@ -16,7 +16,7 @@ docker pull ${ecr_repo_url}:latest
 mkdir -p /app
 cat <<EOF > /app/.env
 PORT=3000
-DB_HOST=${db_endpoint}
+DB_HOST=${db_host}
 DB_USER=${db_username}
 DB_PASS=${db_password}
 EOF
