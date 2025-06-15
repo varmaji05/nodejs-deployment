@@ -49,4 +49,6 @@ resource "aws_lb_listener" "https" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.app_tg.arn
   }
+
+  depends_on = [aws_acm_certificate_validation.ssl_cert_validation]
 }
