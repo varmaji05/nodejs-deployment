@@ -17,8 +17,8 @@ mkdir -p /app
 cat <<EOF > /app/.env
 PORT=3000
 DB_HOST=${db_host}
-DB_USER=${db_username}
-DB_PASS=${db_password}
+DB_USER=${db_user}
+DB_PASS=${db_pass}
 EOF
 
 # Run the app container
