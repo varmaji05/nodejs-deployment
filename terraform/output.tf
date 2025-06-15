@@ -19,5 +19,5 @@ output "alb_dns_name" {
 }
 
 output "rds_endpoint" {
-  value = aws_db_instance.app_db.address
+  value = aws_db_instance.postgres.address
 }
