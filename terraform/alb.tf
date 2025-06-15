@@ -14,7 +14,7 @@ resource "aws_lb_target_group" "app_tg" {
   name     = "${var.project}-tg"
   port     = 3000
   protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  vpc_id   = aws_vpc.main.id
 
   health_check {
     path                = "/health"
