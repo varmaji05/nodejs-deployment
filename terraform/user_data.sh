@@ -1,25 +1,25 @@
 #!/bin/bash
+
 apt update -y
 apt install -y docker.io
-usermod -aG docker ubuntu
-systemctl enable docker
 
-apt install -y docker.io docker-compose git -y
-systemctl enable docker
 systemctl start docker
+systemctl enable docker
 
-# Clone your GitHub repo (replace with your actual repo URL)
-cd /home/ubuntu
-git clone https://github.com/varmaji05/nodejs-deployment.git
-cd app
+# Login to ECR
+aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${ecr_repo_url}
 
-# Create the .env file with dynamic values passed from Terraform
-cat <<EOF > .env
+# Pull image from ECR
+docker pull ${ecr_repo_url}:latest
+
+# Write .env file
+mkdir -p /app
+cat <<EOF > /app/.env
 PORT=3000
-DB_HOST=${db_host}
-DB_USER=${db_user}
-DB_PASS=${db_pass}
+DB_HOST=${db_endpoint}
+DB_USER=${db_username}
+DB_PASS=${db_password}
 EOF
 
-# Start Docker container
-docker-compose up -d
+# Run the app container
+docker run -d --env-file /app/.env -p 3000:3000 --name nodejs-api ${ecr_repo_url}:latest
