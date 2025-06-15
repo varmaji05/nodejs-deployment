@@ -35,6 +35,11 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.6.6
+    
+      - name: Set Terraform Cloud API Token
+        run: echo "credentials \"app.terraform.io\" { token = \"${TFE_TOKEN}\" }" > ~/.terraformrc
+        env:
+          TFE_TOKEN: ${{ secrets.TFE_TOKEN }}  
           
       - name: Terraform Init
         run: terraform init
