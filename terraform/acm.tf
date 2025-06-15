@@ -13,7 +13,7 @@ resource "aws_acm_certificate" "ssl_cert" {
 }
 
 resource "aws_route53_zone" "main" {
-  name = "example.com"
+  name = "demo-assignment.com"
 }
 
 # Fetch validation options (needed to create DNS records)
