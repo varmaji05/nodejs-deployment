@@ -42,7 +42,7 @@ resource "aws_security_group" "ec2_sg" {
 resource "aws_security_group" "db_sg" {
   name        = "db-sg"
   description = "Allow PostgreSQL traffic from EC2"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 5432
