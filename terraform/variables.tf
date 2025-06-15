@@ -10,10 +10,6 @@ variable "secret_key" {
   type = string
 }
 
-variable "project" {
-  default = "demo"
-}
-
 variable "vpc_cidr" {
   default = "10.0.0.0/16"
 }
@@ -73,12 +69,6 @@ variable "public_subnet_ids" {
 
 variable "private_subnet_ids" {
   type = list(string)
-}
-
-variable "db_username" {}
-
-variable "db_password" {
-  sensitive = true
 }
 
 variable "db_username" {
