@@ -1,7 +1,7 @@
 resource "aws_security_group" "alb_sg" {
   name        = "${var.project}-alb-sg"
   description = "Allow HTTP"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 80
@@ -21,7 +21,7 @@ resource "aws_security_group" "alb_sg" {
 resource "aws_security_group" "ec2_sg" {
   name        = "${var.project}-ec2-sg"
   description = "Allow app port"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port       = 3000
