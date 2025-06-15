@@ -57,20 +57,6 @@ variable "key_name" {
   type        = string
 }
 
-variable "vpc_id" {
-  description = "The ID of the VPC where the infrastructure will be deployed"
-  type        = string
-}
-
-variable "public_subnet_ids" {
-  description = "List of public subnet IDs where the ALB and EC2 instances will be launched"
-  type        = list(string)
-}
-
-variable "private_subnet_ids" {
-  type = list(string)
-}
-
 variable "db_username" {
   description = "Username for the RDS database"
   type        = string
@@ -80,9 +66,4 @@ variable "db_password" {
   description = "Password for the RDS database"
   type        = string
   sensitive   = true
-}
-
-variable "alert_email" {
-  description = "Email address to receive CloudWatch alerts"
-  type        = string
 }
