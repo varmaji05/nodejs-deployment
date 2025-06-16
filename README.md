@@ -24,40 +24,7 @@
 
 <hr>
 
-<h2>📐 Architecture Diagram</h2>
-<pre style="background: #f4f4f4; padding: 10px;">
-+---------------+
-|   GitHub Repo |
-+-------+-------+
-        |
-        v
-+------------------------------+
-|      GitHub Actions CI/CD    |
-|  - Test -> Build -> Deploy   |
-+---------------+--------------+
-                |
-                v
-      +------------------+
-      |     AWS ECR      | <-- Docker image pushed
-      +------------------+
-                ^
-                |
-        user_data.sh pulls image
-                |
-      +------------------+        +------------------+
-      |  EC2 AutoScale   +<-------+ Application Load |
-      |  (LaunchTemplate)|        |   Balancer (ALB) |
-      +------------------+        +------------------+
-                |
-        +------------------+
-        |   Dockerized     |
-        |  Node.js App     |
-        +------------------+
-                |
-        +------------------+
-        |     RDS (Postgres)|
-        +------------------+
-</pre>
+![Architecture Diagram](Images/app_arch.jpg)
 
 <hr>
 
