@@ -85,3 +85,12 @@ jobs:
         run: |
           docker push $ECR_REPO:latest
           docker push $ECR_REPO:${{ github.sha }}
+
+      - name: Store image tag in SSM Parameter Store
+        run: |
+          aws ssm put-parameter \
+            --name "/app/docker/image" \
+            --value "${{ env.ECR_REPO }}:latest" \
+            --type String \
+            --overwrite \
+            --region $AWS_REGION
