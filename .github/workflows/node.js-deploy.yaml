@@ -94,12 +94,8 @@ jobs:
           docker push ${{ env.ecr_repo_url }}:latest
           docker push ${{ env.ecr_repo_url }}:${{ github.sha }}
 
-      - name: Store image tag in SSM Parameter Store
-        working-directory: ./app
+      - name: Refresh Auto Scaling Group
         run: |
-          aws ssm put-parameter \
-            --name "/app/docker/image" \
-            --value "${{ env.ecr_repo_url }}:latest" \
-            --type String \
-            --overwrite \
+          aws autoscaling start-instance-refresh \
+            --auto-scaling-group-name demo-asg \
             --region $AWS_REGION
