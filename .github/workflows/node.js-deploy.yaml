@@ -78,16 +78,24 @@ jobs:
           aws ecr get-login-password --region $AWS_REGION | \
           docker login --username AWS --password-stdin $ECR_REPO
 
+      - name: Checkout App Code
+        uses: actions/checkout@v3
+        with:
+          path: ./app
+
       - name: Build Docker Image
+        working-directory: ./app
         run: |
           docker build -t ${{ env.ecr_repo_url }}:latest -t ${{ env.ecr_repo_url }}:${{ github.sha }} ./app
 
       - name: Push Docker Image to ECR
+        working-directory: ./app
         run: |
           docker push ${{ env.ecr_repo_url }}:latest
           docker push ${{ env.ecr_repo_url }}:${{ github.sha }}
 
       - name: Store image tag in SSM Parameter Store
+        working-directory: ./app
         run: |
           aws ssm put-parameter \
             --name "/app/docker/image" \
