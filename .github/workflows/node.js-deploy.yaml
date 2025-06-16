@@ -64,7 +64,10 @@ jobs:
     needs: terraform-provision
     env:
       ECR_REPO: ${{ needs.terraform-provision.outputs.ecr_repo_url }}
-
+    defaults:
+      run:
+        working-directory: ./app
+        
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
