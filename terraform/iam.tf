@@ -90,7 +90,7 @@ resource "aws_iam_role_policy_attachment" "attach_cloudwatch_policy" {
 
 resource "aws_iam_role_policy" "ssm_image_param_policy" {
   name = "${var.project}-ssm-image-read"
-  role = aws_iam_role.ec2_instance_role.id
+  role = aws_iam_role.ec2_role.id
 
   policy = jsonencode({
     Version = "2012-10-17",
