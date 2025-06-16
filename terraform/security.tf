@@ -27,7 +27,7 @@ resource "aws_security_group" "ec2_sg" {
     from_port       = 3000
     to_port         = 3000
     protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
+    cidr_blocks     = ["0.0.0.0/0"]
   }
 
   egress {
@@ -48,7 +48,7 @@ resource "aws_security_group" "db_sg" {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    security_groups = [aws_security_group.ec2_sg.id] # if defined
+    security_groups = [aws_security_group.ec2_sg.id] 
   }
 
   egress {
