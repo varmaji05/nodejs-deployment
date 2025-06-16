@@ -87,22 +87,3 @@ resource "aws_iam_role_policy_attachment" "attach_cloudwatch_policy" {
   role       = aws_iam_role.ec2_role.name
   policy_arn = aws_iam_policy.cloudwatch_logs.arn
 }
-
-resource "aws_iam_role_policy" "ssm_image_param_policy" {
-  name = "${var.project}-ssm-image-read"
-  role = aws_iam_role.ec2_role.id
-
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Effect = "Allow",
-        Action = [
-          "ssm:GetParameter"
-        ],
-        Resource = "arn:aws:ssm:${var.region}:${data.aws_caller_identity.current.account_id}:parameter/app/docker/image"
-      }
-    ]
-  })
-}
-
